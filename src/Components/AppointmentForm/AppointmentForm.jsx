@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const AppointmentForm = ({ doctor, onClose }) => {
+const AppointmentForm = ({ doctor, onClose, onBooked }) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [date, setDate] = useState("");
@@ -10,8 +10,14 @@ const AppointmentForm = ({ doctor, onClose }) => {
     e.preventDefault();
 
     alert(
-      `Appointment booked with ${doctor?.name || "Doctor"}\nDate: ${date}\nTime: ${time}`
+      `Appointment booked with ${
+        doctor?.name || "Doctor"
+      }\nDate: ${date}\nTime: ${time}`
     );
+
+    if (onBooked) {
+      onBooked();
+    }
   };
 
   return (

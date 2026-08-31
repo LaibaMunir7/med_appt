@@ -25,9 +25,21 @@ const doctors = [
 
 const DoctorCard = () => {
   const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [bookedDoctors, setBookedDoctors] = useState([]);
 
   const handleBookAppointment = (doctor) => {
     setSelectedDoctor(doctor);
+  };
+
+  const handleAppointmentBooked = (doctor) => {
+    setBookedDoctors((prev) => [...prev, doctor.name]);
+    setSelectedDoctor(null);
+  };
+
+  const handleCancelAppointment = (doctor) => {
+    setBookedDoctors((prev) =>
+      prev.filter((name) => name !== doctor.name)
+    );
   };
 
   const handleCloseForm = () => {
@@ -36,44 +48,58 @@ const DoctorCard = () => {
 
   return (
     <div className="doctor-cards-container">
-      {doctors.map((doctor, index) => (
-        <div className="doctor-card" key={index}>
-          <div className="doctor-card-details-container">
-            <div className="doctor-icon">
-              <i className="fa fa-user-md"></i>
-            </div>
+      {doctors.map((doctor, index) => {
+        const isBooked = bookedDoctors.includes(doctor.name);
 
-            <h2>{doctor.name}</h2>
+        return (
+          <div className="doctor-card" key={index}>
+            <div className="doctor-card-details-container">
+              <div className="doctor-icon">
+                <i className="fa fa-user-md"></i>
+              </div>
 
-            <p className="doctor-specialty">
-              {doctor.specialty}
-            </p>
+              <h2>{doctor.name}</h2>
 
-            <p>
-              <strong>Experience:</strong> {doctor.experience}
-            </p>
+              <p className="doctor-specialty">
+                {doctor.specialty}
+              </p>
 
-            <p>
-              <strong>Rating:</strong> ⭐ {doctor.rating}
-            </p>
+              <p>
+                <strong>Experience:</strong> {doctor.experience}
+              </p>
 
-            <div>
-              <button
-                className="book-appointment-btn"
-                onClick={() => handleBookAppointment(doctor)}
-              >
-                <div>Book Appointment</div>
-                <div>No Booking Fee</div>
-              </button>
+              <p>
+                <strong>Rating:</strong> ⭐ {doctor.rating}
+              </p>
+
+              <div className="doctor-card-options-container">
+                {!isBooked ? (
+                  <button
+                    className="book-appointment-btn"
+                    onClick={() => handleBookAppointment(doctor)}
+                  >
+                    <div>Book Appointment</div>
+                    <div>No Booking Fee</div>
+                  </button>
+                ) : (
+                  <button
+                    className="cancel-appointment-btn"
+                    onClick={() => handleCancelAppointment(doctor)}
+                  >
+                    Cancel Appointment
+                  </button>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
 
       {selectedDoctor && (
         <AppointmentForm
           doctor={selectedDoctor}
           onClose={handleCloseForm}
+          onBooked={() => handleAppointmentBooked(selectedDoctor)}
         />
       )}
     </div>
