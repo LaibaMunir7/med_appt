@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "./DoctorCard.css";
+import AppointmentForm from "../AppointmentForm/AppointmentForm";
 
 const doctors = [
   {
@@ -23,6 +24,16 @@ const doctors = [
 ];
 
 const DoctorCard = () => {
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
+
+  const handleBookAppointment = (doctor) => {
+    setSelectedDoctor(doctor);
+  };
+
+  const handleCloseForm = () => {
+    setSelectedDoctor(null);
+  };
+
   return (
     <div className="doctor-cards-container">
       {doctors.map((doctor, index) => (
@@ -47,7 +58,10 @@ const DoctorCard = () => {
             </p>
 
             <div>
-              <button className="book-appointment-btn">
+              <button
+                className="book-appointment-btn"
+                onClick={() => handleBookAppointment(doctor)}
+              >
                 <div>Book Appointment</div>
                 <div>No Booking Fee</div>
               </button>
@@ -55,6 +69,13 @@ const DoctorCard = () => {
           </div>
         </div>
       ))}
+
+      {selectedDoctor && (
+        <AppointmentForm
+          doctor={selectedDoctor}
+          onClose={handleCloseForm}
+        />
+      )}
     </div>
   );
 };
