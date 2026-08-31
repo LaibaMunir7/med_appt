@@ -1,0 +1,12 @@
+.review-page {
+  min-height: calc(100vh - 90px);
+  padding: 55px 20px 60px;
+  background-color: #f5f7fb;
+  box-sizing: border-box;
+}
+
+.review-page-content {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}

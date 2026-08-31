@@ -1,0 +1,184 @@
+.review-form-container {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 32px 38px;
+    background-color: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  .review-doctor-info {
+    margin-bottom: 25px;
+  }
+  
+  .review-doctor-info h2 {
+    margin: 0 0 12px;
+    color: #2190ff;
+    font-size: 28px;
+    font-weight: 700;
+  }
+  
+  .review-doctor-info h3 {
+    margin: 8px 0;
+    color: #222;
+    font-size: 20px;
+  }
+  
+  .review-doctor-info p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 16px;
+  }
+  
+  .feedback-btn,
+  .submit-review-btn {
+    width: 100%;
+    padding: 13px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #2190ff;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+  
+  .feedback-btn:hover,
+  .submit-review-btn:hover {
+    opacity: 0.9;
+  }
+  
+  .feedback-btn:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+  }
+  
+  .feedback-form {
+    margin-top: 28px;
+    text-align: left;
+  }
+  
+  .feedback-form h3 {
+    margin: 0 0 20px;
+    color: #555;
+    font-size: 22px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label,
+  .rating-section > label {
+    display: block;
+    margin-bottom: 8px;
+    color: #444;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    display: block;
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    box-sizing: border-box;
+    font-size: 15px;
+    background-color: #ffffff;
+  }
+  
+  .form-group textarea {
+    min-height: 110px;
+    resize: vertical;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #2190ff;
+    box-shadow: 0 0 0 2px rgba(33, 144, 255, 0.12);
+  }
+  
+  .rating-section {
+    margin: 22px 0;
+  }
+  
+  .rating-buttons {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    margin-top: 8px;
+  }
+  
+  .rating-btn {
+    width: auto !important;
+    min-width: 40px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #cccccc;
+    font-size: 30px;
+    line-height: 40px;
+    cursor: pointer;
+  }
+  
+  .rating-btn:hover {
+    color: #f5b301;
+  }
+  
+  .rating-btn.selected {
+    color: #f5b301;
+  }
+  
+  .rating-value {
+    margin: 6px 0 0;
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .submit-review-btn {
+    margin-top: 5px;
+  }
+  
+  .warning {
+    margin: 0 0 18px;
+    color: #d9534f;
+    font-weight: 600;
+  }
+  
+  .submitted-review {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #f5f7fb;
+    border-radius: 10px;
+    text-align: left;
+  }
+  
+  .submitted-review h3 {
+    margin: 0 0 15px;
+    color: #2190ff;
+  }
+  
+  .submitted-review p {
+    margin: 9px 0;
+    color: #333;
+  }
+  
+  .submitted-stars {
+    color: #f5b301;
+    font-size: 20px;
+  }
+  
+  @media (max-width: 700px) {
+    .review-form-container {
+      padding: 25px 20px;
+    }
+  }
