@@ -7,7 +7,6 @@ const Navbar = () => {
     const [click, setClick] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
     const [showDropdown, setShowDropdown] = useState(false);
 
     const handleClick = () => setClick(!click);
@@ -21,15 +20,16 @@ const Navbar = () => {
         localStorage.removeItem("doctorData");
 
         setIsLoggedIn(false);
+        setShowDropdown(false);
 
         for (let i = 0; i < localStorage.length; i++) {
             const key = localStorage.key(i);
-            if (key.startsWith("reviewFormData_")) {
+
+            if (key && key.startsWith("reviewFormData_")) {
                 localStorage.removeItem(key);
             }
         }
 
-        setEmail("");
         window.location.reload();
     };
 
@@ -81,23 +81,58 @@ const Navbar = () => {
                 </li>
 
                 {isLoggedIn ? (
-    <>
-        <li className="link">
-            <span style={{ marginRight: "10px" }}>
-                {username.split("@")[0]}
-            </span>
-        </li>
+                    <>
+                        <li className="link profile-menu">
+                            <button
+                                type="button"
+                                className="profile-menu-button"
+                                onClick={handleDropdown}
+                            >
+                                {username.split("@")[0]}
+                                <i
+                                    className={
+                                        showDropdown
+                                            ? "fa fa-angle-up"
+                                            : "fa fa-angle-down"
+                                    }
+                                ></i>
+                            </button>
 
-        <li className="link">
-            <button
-                className="btn2"
-                onClick={handleLogout}
-            >
-                Logout
-            </button>
-        </li>
-    </>
-) : (
+                            {showDropdown && (
+                                <div className="profile-dropdown">
+                                    <Link
+                                        to="/profile"
+                                        onClick={() =>
+                                            setShowDropdown(false)
+                                        }
+                                    >
+                                        <i className="fa fa-user"></i>
+                                        Profile
+                                    </Link>
+
+                                    <Link
+                                        to="/reports"
+                                        onClick={() =>
+                                            setShowDropdown(false)
+                                        }
+                                    >
+                                        <i className="fa fa-file-text"></i>
+                                        Your Reports
+                                    </Link>
+                                </div>
+                            )}
+                        </li>
+
+                        <li className="link">
+                            <button
+                                className="btn2"
+                                onClick={handleLogout}
+                            >
+                                Logout
+                            </button>
+                        </li>
+                    </>
+                ) : (
                     <>
                         <li className="link">
                             <Link to="/signup">
